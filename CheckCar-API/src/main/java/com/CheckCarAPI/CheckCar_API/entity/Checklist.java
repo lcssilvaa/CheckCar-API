@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "checklist")
 public class Checklist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,6 +21,11 @@ public class Checklist {
     private Veiculo veiculo;
 
     private LocalDateTime dataChecklist; // armazena datahora
+
+    @PrePersist
+    public void prePersist() {
+        this.dataChecklist = LocalDateTime.now();
+    }
 
     //getters e setters
 
@@ -53,6 +59,9 @@ public class Checklist {
 
     public void setDataChecklist(LocalDateTime dataChecklist) {
         this.dataChecklist = dataChecklist;
+    }
+
+    public void setDataCheckList(LocalDateTime now) {
     }
 }
 
