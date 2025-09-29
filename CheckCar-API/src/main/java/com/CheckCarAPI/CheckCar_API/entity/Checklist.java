@@ -20,5 +20,39 @@ public class Checklist {
     private Veiculo veiculo;
 
     private LocalDateTime dataChecklist; // armazena datahora
+
+    //getters e setters
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public LocalDateTime getDataChecklist() {
+        return dataChecklist;
+    }
+
+    public void setDataChecklist(LocalDateTime dataChecklist) {
+        this.dataChecklist = dataChecklist;
+    }
 }
 
