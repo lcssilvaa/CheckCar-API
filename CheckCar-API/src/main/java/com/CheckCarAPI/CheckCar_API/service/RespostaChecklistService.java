@@ -29,4 +29,10 @@ public class RespostaChecklistService {
     public void deletar(Integer id) {
         respostaChecklistRepository.deleteById(id);
     }
+
+    public List<RespostaChecklist> salvarLote(List<RespostaChecklist> respostas) {
+        return respostaChecklistRepository.saveAll(respostas);
+    }
+
+
 }

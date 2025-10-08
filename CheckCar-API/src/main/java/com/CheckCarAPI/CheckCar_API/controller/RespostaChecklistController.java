@@ -36,4 +36,12 @@ public class RespostaChecklistController {
         respostaChecklistService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/lote")
+    public ResponseEntity<List<RespostaChecklist>> cadastrarLote(@RequestBody List<RespostaChecklist> respostas) {
+        List<RespostaChecklist> salvas = respostaChecklistService.salvarLote(respostas);
+        return ResponseEntity.ok(salvas);
+    }
+
+    
 }
