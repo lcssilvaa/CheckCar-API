@@ -144,7 +144,7 @@ http://localhost:8080/swagger-ui/index.html
 - Relatório resumido por checklist
 - Autenticação com JWT
 - Integração com front-end (React)
-- Deploy em nuvem (Render, Railway)
+- D[CheckCar-API](CheckCar-API)eploy em nuvem (Render, Railway)
 
 ---
 
