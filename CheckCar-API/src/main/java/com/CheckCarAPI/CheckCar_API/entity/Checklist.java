@@ -1,7 +1,6 @@
 package com.CheckCarAPI.CheckCar_API.entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,23 +11,24 @@ public class Checklist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne //muitos checklists podem ser feitos por um mesmo usuario/veiculo
-    @JoinColumn(name = "id_usuario") //define o nome da coluna que liga com a outra tabela
+    @ManyToOne // muitos checklists podem ser feitos por um mesmo usuario/veiculo
+    @JoinColumn(name = "id_usuario") // define o nome da coluna que liga com a outra tabela
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "id_veiculo")
     private Veiculo veiculo;
 
-    private LocalDateTime dataChecklist; // armazena datahora
+    private LocalDateTime dataChecklist; // armazena data e hora
 
     @PrePersist
     public void prePersist() {
-        this.dataChecklist = LocalDateTime.now();
+        if (this.dataChecklist == null) {
+            this.dataChecklist = LocalDateTime.now();
+        }
     }
 
-    //getters e setters
-
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -60,8 +60,4 @@ public class Checklist {
     public void setDataChecklist(LocalDateTime dataChecklist) {
         this.dataChecklist = dataChecklist;
     }
-
-    public void setDataCheckList(LocalDateTime now) {
-    }
 }
-
