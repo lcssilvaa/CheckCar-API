@@ -39,4 +39,11 @@ public class UsuarioController {
         List<Usuario> usuarios = usuarioService.listarTodos();
         return ResponseEntity.ok(usuarios);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<Usuario> login(@RequestBody Usuario credenciais) {
+        Usuario usuario = usuarioService.autenticar(credenciais.getCpf(), credenciais.getSenha());
+        return ResponseEntity.ok(usuario);
+    }
+
 }

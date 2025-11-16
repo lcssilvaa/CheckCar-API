@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.CheckCarAPI.CheckCar_API.repository.UsuarioRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service //define como service
 
@@ -33,4 +34,14 @@ public class UsuarioService {
     public void deletar(Integer id) {
         usuarioRepository.deleteById(id);
     }
+
+    public Usuario autenticar(String cpf, String senha) {
+        Optional<Usuario> usuario = usuarioRepository.findByCpf(cpf);
+        if (usuario.isEmpty() || !usuario.get().getSenha().equals(senha)) {
+            throw new RuntimeException("CPF ou senha inválidos");
+        }
+        return usuario.orElse(null);
+    }
 }
+
+
