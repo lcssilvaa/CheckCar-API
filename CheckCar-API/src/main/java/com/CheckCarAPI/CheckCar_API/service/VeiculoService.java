@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 @Service
 public class VeiculoService {
@@ -28,5 +31,17 @@ public class VeiculoService {
 
     public void deletar(Integer id) {
         veiculoRepository.deleteById(id);
+    }
+
+    public List<String> listarTodasPlacas() {
+        return veiculoRepository.findAll()
+                .stream()
+                .map(Veiculo::getPlaca)
+                .collect(Collectors.toList());
+    }
+
+    public Veiculo buscarPorPlaca(String placa) {
+        return veiculoRepository.findByPlaca(placa)
+                .orElseThrow(() -> new RuntimeException("Placa não encontrada: " + placa));
     }
 }
