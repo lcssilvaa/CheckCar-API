@@ -38,19 +38,26 @@ public class UsuarioController {
         return ResponseEntity.ok(lista);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizar(@PathVariable Integer id, @RequestBody Usuario usuario) {
-        if (id == null || usuario == null) return ResponseEntity.badRequest().build();
-        Usuario existente = usuarioService.buscarPorId(id);
+    @PutMapping("/{cpf}")
+    public ResponseEntity<Usuario> atualizar(@PathVariable String cpf, @RequestBody Usuario usuario) {
+        if (cpf == null || usuario == null) return ResponseEntity.badRequest().build();
+
+        Usuario existente = usuarioService.buscarPorCpf(cpf);
+
         usuario.setId(existente.getId());
+        usuario.setCpf(existente.getCpf());
+
         Usuario atualizado = usuarioService.salvar(usuario);
         return ResponseEntity.ok(atualizado);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Integer id) {
-        if (id == null) return ResponseEntity.badRequest().build();
-        usuarioService.deletar(id);
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> deletar(@PathVariable String cpf) {
+        if (cpf == null) return ResponseEntity.badRequest().build();
+
+        Usuario existente = usuarioService.buscarPorCpf(cpf);
+
+        usuarioService.deletar(existente.getId());
         return ResponseEntity.noContent().build();
     }
 }

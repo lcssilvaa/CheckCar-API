@@ -1,63 +1,67 @@
-package com.CheckCarAPI.CheckCar_API.entity;
+    package com.CheckCarAPI.CheckCar_API.entity;
 
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
+    import jakarta.persistence.*;
 
-@Entity
-@Table(name = "checklist")
-public class Checklist {
+    import java.time.LocalDateTime;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Entity
+    @Table(name = "checklist")
+    public class Checklist {
 
-    @ManyToOne // muitos checklists podem ser feitos por um mesmo usuario/veiculo
-    @JoinColumn(name = "id_usuario") // define o nome da coluna que liga com a outra tabela
-    private Usuario usuario;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_veiculo")
-    private Veiculo veiculo;
+        @ManyToOne //muitos checklists podem ser feitos por um mesmo usuario/veiculo
+        @JoinColumn(name = "id_usuario") //define o nome da coluna que liga com a outra tabela
+        private Usuario usuario;
 
-    private LocalDateTime dataChecklist; // armazena data e hora
+        @ManyToOne
+        @JoinColumn(name = "id_veiculo")
+        private Veiculo veiculo;
 
-    @PrePersist
-    public void prePersist() {
-        if (this.dataChecklist == null) {
+        private LocalDateTime dataChecklist; // armazena datahora
+
+        @PrePersist
+        public void prePersist() {
             this.dataChecklist = LocalDateTime.now();
+        }
+
+        //getters e setters
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public Usuario getUsuario() {
+            return usuario;
+        }
+
+        public void setUsuario(Usuario usuario) {
+            this.usuario = usuario;
+        }
+
+        public Veiculo getVeiculo() {
+            return veiculo;
+        }
+
+        public void setVeiculo(Veiculo veiculo) {
+            this.veiculo = veiculo;
+        }
+
+        public LocalDateTime getDataChecklist() {
+            return dataChecklist;
+        }
+
+        public void setDataChecklist(LocalDateTime dataChecklist) {
+            this.dataChecklist = dataChecklist;
+        }
+
+        public void setDataCheckList(LocalDateTime now) {
         }
     }
 
-    // Getters e Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Veiculo getVeiculo() {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-
-    public LocalDateTime getDataChecklist() {
-        return dataChecklist;
-    }
-
-    public void setDataChecklist(LocalDateTime dataChecklist) {
-        this.dataChecklist = dataChecklist;
-    }
-}
