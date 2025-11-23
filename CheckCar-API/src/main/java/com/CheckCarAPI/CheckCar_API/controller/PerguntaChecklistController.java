@@ -2,7 +2,7 @@ package com.CheckCarAPI.CheckCar_API.controller;
 
 import com.CheckCarAPI.CheckCar_API.entity.PerguntaChecklist;
 import com.CheckCarAPI.CheckCar_API.entity.TipoVeiculo;
-import com.CheckCarAPI.CheckCar_API.repository.PerguntaChecklistRepository;
+import com.CheckCarAPI.CheckCar_API.service.PerguntaChecklistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,22 +13,20 @@ import java.util.List;
 public class PerguntaChecklistController {
 
     @Autowired
-    private PerguntaChecklistRepository repository;
+    private PerguntaChecklistService service;
 
     @GetMapping
     public List<PerguntaChecklist> listarPorTipo(@RequestParam TipoVeiculo tipoVeiculo) {
-        return repository.findByTipoVeiculoAndAtivoTrue(tipoVeiculo);
+        return service.listarPorTipo(tipoVeiculo);
     }
 
     @PostMapping
     public PerguntaChecklist cadastrar(@RequestBody PerguntaChecklist pergunta) {
-        return repository.save(pergunta);
+        return service.cadastrar(pergunta);
     }
 
     @GetMapping("/todas")
     public List<PerguntaChecklist> listarTodasAtivas() {
-        return repository.findByAtivoTrue();
+        return service.listarTodasAtivas();
     }
-
 }
-
