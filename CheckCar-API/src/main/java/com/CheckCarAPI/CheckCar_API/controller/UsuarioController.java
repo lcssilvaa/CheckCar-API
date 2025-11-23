@@ -45,5 +45,5 @@ public class UsuarioController {
         Usuario usuario = usuarioService.autenticar(credenciais.getCpf(), credenciais.getSenha());
         return ResponseEntity.ok(usuario);
     }
-
 }
+
