@@ -36,6 +36,16 @@ import java.util.List;
             veiculoService.deletar(id);
             return ResponseEntity.noContent().build();
         }
+
+        @GetMapping("/veiculos/placas")
+        public List<String> listarPlacas() {
+            return veiculoService.listarTodasPlacas();
+        }
+
+        @GetMapping("/{placa}")
+        public Veiculo buscarPorPlaca(@PathVariable String placa) {
+            return veiculoService.buscarPorPlaca(placa);
+        }
     }
 
 
