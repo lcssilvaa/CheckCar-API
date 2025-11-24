@@ -1,28 +1,90 @@
 package com.CheckCarAPI.CheckCar_API.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "resposta_checklist")
 public class RespostaChecklist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_checklist")
-    private Checklist checklist;
+    @Column(name = "id_lote", nullable = false)
+    private Long idLote;
 
     @ManyToOne
-    @JoinColumn(name = "id_item")
-    private ItemChecklist item;
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_veiculo", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
+    private Veiculo veiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pergunta", nullable = false)
+    @JsonIdentityReference(alwaysAsId = true)
+    private PerguntaChecklist pergunta;
 
     @Enumerated(EnumType.STRING)
-    private StatusItem status;
+    @Column(nullable = false)
+    private TipoVeiculo tipo;
 
+    @Column(nullable = false)
     private String observacao;
 
-    //getters e setters
+    private String status;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Long getIdLote() {
+        return idLote;
+    }
+
+    public void setIdLote(Long idLote) {
+        this.idLote = idLote;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public PerguntaChecklist getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(PerguntaChecklist pergunta) {
+        this.pergunta = pergunta;
+    }
+
+    public TipoVeiculo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoVeiculo tipo) {
+        this.tipo = tipo;
+    }
 
     public String getObservacao() {
         return observacao;
@@ -32,36 +94,11 @@ public class RespostaChecklist {
         this.observacao = observacao;
     }
 
-    public StatusItem getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(StatusItem status) {
+    public void setStatus(String status) {
         this.status = status;
     }
-
-    public ItemChecklist getItem() {
-        return item;
-    }
-
-    public void setItem(ItemChecklist item) {
-        this.item = item;
-    }
-
-    public Checklist getChecklist() {
-        return checklist;
-    }
-
-    public void setChecklist(Checklist checklist) {
-        this.checklist = checklist;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }
-
