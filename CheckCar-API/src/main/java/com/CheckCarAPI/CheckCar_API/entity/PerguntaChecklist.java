@@ -9,7 +9,7 @@ public class PerguntaChecklist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String texto;
@@ -57,11 +57,11 @@ public class PerguntaChecklist {
         this.texto = texto;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }
