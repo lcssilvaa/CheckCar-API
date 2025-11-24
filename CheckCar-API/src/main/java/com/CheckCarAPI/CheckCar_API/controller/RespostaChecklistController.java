@@ -1,5 +1,6 @@
 package com.CheckCarAPI.CheckCar_API.controller;
 
+import com.CheckCarAPI.CheckCar_API.DTO.RespostaChecklistDTO;
 import com.CheckCarAPI.CheckCar_API.entity.RespostaChecklist;
 import com.CheckCarAPI.CheckCar_API.service.RespostaChecklistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,11 @@ public class RespostaChecklistController {
     }
 
     @PostMapping("/lote")
-    public ResponseEntity<List<RespostaChecklist>> cadastrarLote(@RequestBody List<RespostaChecklist> respostas) {
-        List<RespostaChecklist> salvas = respostaChecklistService.salvarLote(respostas);
+    public ResponseEntity<?> salvarLote(@RequestBody List<RespostaChecklistDTO> dtos) {
+        List<RespostaChecklist> salvas = respostaChecklistService.salvarLoteDTO(dtos);
         return ResponseEntity.ok(salvas);
     }
 
-    
+
+
 }
