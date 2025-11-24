@@ -1,5 +1,6 @@
 package com.CheckCarAPI.CheckCar_API.controller;
 
+import com.CheckCarAPI.CheckCar_API.DTO.ChecklistDTO;
 import com.CheckCarAPI.CheckCar_API.entity.Checklist;
 import com.CheckCarAPI.CheckCar_API.service.ChecklistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ import java.util.List;
         private ChecklistService checklistService;
 
         @PostMapping
-        public ResponseEntity<Checklist> cadastrar(@RequestBody Checklist checklist) {
-            Checklist novo = checklistService.salvar(checklist);
+        public ResponseEntity<Checklist> cadastrar(@RequestBody ChecklistDTO dto) {
+            Checklist novo = checklistService.salvar(dto);
             return ResponseEntity.ok(novo);
         }
 
