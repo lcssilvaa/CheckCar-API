@@ -37,12 +37,12 @@ import java.util.List;
             return ResponseEntity.noContent().build();
         }
 
-        @GetMapping("/veiculos/placas")
+        @GetMapping("/todas-placas")
         public List<String> listarPlacas() {
             return veiculoService.listarTodasPlacas();
         }
 
-        @GetMapping("/{placa}")
+        @GetMapping("/placa/{placa}")
         public Veiculo buscarPorPlaca(@PathVariable String placa) {
             return veiculoService.buscarPorPlaca(placa);
         }
